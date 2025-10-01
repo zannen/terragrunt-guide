@@ -4,7 +4,7 @@ terraform {
   # aws s3api put-bucket-versioning --bucket 'terragrunt-to-terralith-tfstate-20250930-174455' --versioning-configuration 'Status=Enabled'
   backend "s3" {
     bucket       = "terragrunt-to-terralith-tfstate-20250930-174455"
-    key          = "tofu.tfstate"
+    key          = "dev/tofu.tfstate"
     region       = "eu-west-2"
     encrypt      = true
     use_lockfile = true
