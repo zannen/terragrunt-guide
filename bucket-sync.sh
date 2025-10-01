@@ -6,9 +6,9 @@ for env in dev prod ; do
 	echo "=== $env ==="
 
 	# Go to repo top level
-	cd "$top_level/live"
+	cd "$top_level/live/$env"
 
-	bucket_name="$(tofu output -raw "${env}_s3_bucket_name")"
+	bucket_name="$(terragrunt run -- output -raw s3_bucket_name)"
 
 	# Sync the static dir with the bucket
 	cd "$top_level/dist/static/$env"
