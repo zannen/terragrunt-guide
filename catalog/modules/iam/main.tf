@@ -29,8 +29,8 @@ resource "aws_iam_policy" "lambda_s3_read" {
           "s3:ListBucket"
         ]
         Resource = [
-          aws_s3_bucket.static_assets.arn,
-          "${aws_s3_bucket.static_assets.arn}/*"
+          var.s3_bucket_arn,
+          "${var.s3_bucket_arn}/*"
         ]
       }
     ]
@@ -54,7 +54,7 @@ resource "aws_iam_policy" "lambda_dynamodb" {
           "dynamodb:Query",
           "dynamodb:Scan"
         ]
-        Resource = aws_dynamodb_table.asset_metadata.arn
+        Resource = var.dynamodb_table_arn
       }
     ]
   })

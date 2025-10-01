@@ -4,7 +4,7 @@ resource "aws_lambda_function" "main" {
   filename         = var.lambda_zip_file
   source_code_hash = filebase64sha256(var.lambda_zip_file)
 
-  role = aws_iam_role.lambda_role.arn
+  role = var.lambda_role_arn
 
   handler       = var.lambda_handler
   runtime       = var.lambda_runtime
@@ -14,16 +14,16 @@ resource "aws_lambda_function" "main" {
 
   environment {
     variables = {
-      S3_BUCKET_NAME      = aws_s3_bucket.static_assets.bucket
-      DYNAMODB_TABLE_NAME = aws_dynamodb_table.asset_metadata.name
+      S3_BUCKET_NAME      = var.s3_bucket_name
+      DYNAMODB_TABLE_NAME = var.dynamodb_table_name
     }
   }
 
-  depends_on = [
-    aws_iam_role_policy_attachment.lambda_s3_read,
-    aws_iam_role_policy_attachment.lambda_dynamodb,
-    aws_iam_role_policy_attachment.lambda_basic_execution
-  ]
+  # depends_on = [
+  #   aws_iam_role_policy_attachment.lambda_s3_read,
+  #   aws_iam_role_policy_attachment.lambda_dynamodb,
+  #   aws_iam_role_policy_attachment.lambda_basic_execution
+  # ]
 }
 
 resource "aws_lambda_function_url" "main" {

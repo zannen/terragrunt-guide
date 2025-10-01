@@ -1,34 +1,34 @@
 output "lambda_function_url" {
   description = "URL of the Lambda function"
-  value       = aws_lambda_function_url.main.function_url
+  value       = module.lambda.url
 }
 
 output "lambda_function_name" {
   description = "Name of the Lambda function"
-  value       = aws_lambda_function.main.function_name
+  value       = module.lambda.name
 }
 
 output "s3_bucket_name" {
   description = "Name of the S3 bucket for static assets"
-  value       = aws_s3_bucket.static_assets.bucket
+  value       = module.s3.name
 }
 
 output "s3_bucket_arn" {
   description = "ARN of the S3 bucket for static assets"
-  value       = aws_s3_bucket.static_assets.arn
+  value       = module.s3.arn
 }
 
 output "dynamodb_table_name" {
   description = "Name of the DynamoDB table for asset metadata"
-  value       = aws_dynamodb_table.asset_metadata.name
+  value       = module.ddb.name
 }
 
 output "dynamodb_table_arn" {
   description = "ARN of the DynamoDB table for asset metadata"
-  value       = aws_dynamodb_table.asset_metadata.arn
+  value       = module.ddb.arn
 }
 
 output "lambda_role_arn" {
   description = "ARN of the Lambda execution role"
-  value       = aws_iam_role.lambda_role.arn
+  value       = module.iam.arn
 }
