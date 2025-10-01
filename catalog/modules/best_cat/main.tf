@@ -1,5 +1,5 @@
 module "s3" {
-  source = "../catalog/modules/s3"
+  source = "../s3"
 
   name = var.name
 
@@ -7,13 +7,13 @@ module "s3" {
 }
 
 module "ddb" {
-  source = "../catalog/modules/ddb"
+  source = "../ddb"
 
   name = var.name
 }
 
 module "iam" {
-  source = "../catalog/modules/iam"
+  source = "../iam"
 
   name = var.name
 
@@ -24,7 +24,7 @@ module "iam" {
 }
 
 module "lambda" {
-  source = "../catalog/modules/lambda"
+  source = "../lambda"
 
   name = var.name
 
